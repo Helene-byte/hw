@@ -1,4 +1,4 @@
-import os
+import os, stat
 import fnmatch
 import argparse
 
@@ -16,9 +16,14 @@ def finder(path, pattern):
 
 def display_result(file_paths):
     """Displays founded file paths and file's permissions."""
+
     for file_path in file_paths:
-        stats = os.stat(file_path)
-        print(stats.st_mode)
+        print(file_path, stat.filemode(os.stat(file_path).st_mode))
+    # print('Found ' + count_sum(file_paths) + ' file(s).')
+
+# def count_sum(file_paths):
+#     return str(sum(1 for _ in file_paths))
+        
 
 def main():
     parser = argparse.ArgumentParser()
